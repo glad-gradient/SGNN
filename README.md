@@ -1,2 +1,2 @@
 # SGNN
-A Deep Graph Library (DGL)  implementation of paper "Stochastic Graph Neural Networks"
+A Deep Graph Library (DGL) and PyTorch  implementation of paper "Stochastic Graph Neural Networks"
