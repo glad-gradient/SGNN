@@ -7,7 +7,13 @@ from dgl import function as fn
 
 class SGConv(torch.nn.Module):
     def __init__(self, n_filters, order, p, activation):
-        super(SGConv, self).__init__()
+        super().__init__()
+        if n_filters <= 0:
+            raise Exception('Number of filters must be greater than 0.')
+
+        if order <= 0:
+            raise Exception('Order must be greater than 0.')
+
         self.n_filters = n_filters
         self.order = order          # order of the stochastic graph filter
         self.p = p        # probability to create the input tensor of probability values for the Bernoulli distribution
@@ -50,12 +56,6 @@ class SGConv(torch.nn.Module):
         Shift operator (S) is an adjacency matrix of graph in this implementation.
 
         """
-
-        if self.n_filters <= 0:
-            raise Exception('Number of filters must be greater than 0.')
-
-        if self.order <= 0:
-            raise Exception('Order must be greater than 0.')
 
         with g.local_scope():
             n_nodes = g.num_nodes()
